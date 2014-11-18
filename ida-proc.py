@@ -3,20 +3,20 @@ from idaapi import *
 class DecodingError(Exception):
     pass
 
-class PicoProcessor(processor_t):
+class MyProcessor(processor_t):
     id = 0x8000 + 8888
     flag = PR_ADJSEGS | PRN_HEX
     cnbits = 8
     dnbits = 8
-    psnames = ["pico2014"]
-    plnames = ["picoctf VM CPU"]
+    psnames = ["myVMCPU"]
+    plnames = ["My VM CPU"]
     segreg_size = 0
     instruc_start = 0
     assembler = {
         "flag": AS_NCHRE | ASH_HEXF4 | ASD_DECF1 | ASO_OCTF3 | ASB_BINF2
               | AS_NOTAB,
         "uflag": 0,
-        "name": "Pico assembler",
+        "name": "My assembler",
         "origin": ".org",
         "end": ".end",
         "cmnt": ";",
@@ -366,4 +366,4 @@ class PicoProcessor(processor_t):
         MakeLine(buf)
 
 def PROCESSOR_ENTRY():
-    return PicoProcessor()
+    return MyProcessor()
